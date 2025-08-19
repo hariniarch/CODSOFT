@@ -1,0 +1,41 @@
+todo_list = []
+
+def menu():
+    print("\n1. View Tasks")
+    print("2. Add Task")
+    print("3. Mark Done")
+    print("4. Delete Task")
+    print("5. Exit")
+
+while True:
+    menu()
+    choice = input("Choose: ")
+
+    if choice == "1":
+        if not todo_list:
+            print("No tasks.")
+        else:
+            for i, t in enumerate(todo_list, 1):
+                status = "✓" if t["done"] else "✗"
+                print(f"{i}. {t['name']} [{status}]")
+
+    elif choice == "2":
+        name = input("Enter task: ")
+        todo_list.append({"name": name, "done": False})
+        print("Added!")
+
+    elif choice == "3":
+        num = int(input("Task number: "))
+        todo_list[num-1]["done"] = True
+        print("Marked done!")
+
+    elif choice == "4":
+        num = int(input("Task number: "))
+        todo_list.pop(num-1)
+        print("Deleted!")
+
+    elif choice == "5":
+        print("Bye!")
+        break
+    else:
+        print("Invalid choice.")
